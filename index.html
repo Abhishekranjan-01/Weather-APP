@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Whether API</title>
+
+    <link rel="stylesheet" href="./style.css">
+    <script src="./script.js" defer></script>
+
+    <!-- Icons Credit -->
+
+    <a  href="https://icons8.com/icon/3902/humidity"></a><a href="https://icons8.com"></a>
+
+    <!-- Google Fonts -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome CDN -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+<body class="bg-[url('https://images.pexels.com/photos/18111431/pexels-photo-18111431/free-photo-of-weather-space-dark-summer.jpeg?auto=compress&cs=tinysrgb&w=1600')]
+
+md:bg-[url('https://images.pexels.com/photos/76969/cold-front-warm-front-hurricane-felix-76969.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')] 
+
+bg-no-repeat bg-cover h-screen md:h-full bg-clip-text">
+
+<!-- Main Container -->
+<main class="w-full h-screen flex flex-col items-center gap-12 ">
+    <!-- Webpage Heading -->
+    <h1 class="text-3xl md:text-4xl  text-left font-bold bg-clip-text mt-10 md:mt-5" style="  background: -webkit-linear-gradient(right,  #fc4a1a, #f7b733); 
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;">Get Weather Forecast</h1>
+
+    <!-- Input & Output Container -->
+    <div class="flex justify-center flex-col items-center gap-10">
+        <!-- Input Container -->
+        <div class="flex flex-col gap-5 w-fit">
+            <input class="px-4 py-2 outline-none rounded-lg font-semibold" type="text" placeholder="Enter City">
+            <button class="px-2 py-2 bg-gray-900 text-lg text-gray-200 font-semibold" type="submit">Submit</button>
+    
+        </div>
+        <!-- Output Container -->
+        <div id="data-output-container" class="hidden bg-gray-100 font-['arial'] flex-col text-gray-700 rounded-xl shadow-2xl w-[85vw] md:w-[45vw] py-4">
+            <!-- Row-1 -->
+            <div  class="flex justify-between px-4 py-4 gap-5 text-xl font-['Poppins'] ">
+                <div >City</div>
+                <!-- City Name Will be written dynamically when API response received -->
+                <div id="city"></div>
+            </div>
+            <!-- Row-2 -->
+            <div class=" flex flex-col justify-center items-center gap-1 md:gap-5">
+                
+                <!-- Temperature -->
+                <div class="flex justify-center items-center ">
+                    <!-- Temperature Will be written dynamically when API response received -->
+                    <h1 class="self-center text-4xl text-center"><span  id="temperature">00</span><sup>o</sup><sub>c</sub>
+                    </h1>
+                </div>
+
+                <!-- Condition -->
+                <div class="flex px-5 md:px-8 justify-between w-full">
+                    
+                    <h1 class="self-center text-center text-lg" >Condition <i class="fa-solid fa-temperature-arrow-up fa-lg"></i></h1>
+                    <!-- Condition Will be written dynamically when API response received -->
+                    <h1 class="self-center text-center text-lg font-semibold" id="condition">N/N</h1>
+                
+                </div>
+
+                <!-- Wind Speed  -->
+                <div class="flex px-5 md:px-8  justify-between w-full">
+                    
+                    <h1 class="self-center text-center text-lg" >Wind Speed <i class="fa-solid fa-wind fa-lg"></i></h1>
+                    <!-- Wind Speed Will be written dynamically when API response received -->
+                    <h1 class="self-center text-center text-lg font-semibold"><span id="wind-speed"></span> <span> KM/H</span></h1>
+            
+                </div>
+
+                <!-- Humidity -->
+                <div class="flex px-5 md:px-8  justify-between w-full">
+                    
+                    <h1 class="self-center text-center text-lg" >Humidity <img class="inline" width="30" height="50" src="https://img.icons8.com/ios/50/000000/dew-point.png" alt="dew-point"/></h1>
+                    
+                    <!-- Humidity Will be written dynamically when API response received -->
+                    <h1 class="self-center text-center text-lg"><span class="font-semibold" id="humidity"></span> <span class="font-semibold"> &#37;</span></h1>
+            
+                </div>
+                
+                <!-- Visibility -->
+                <div class="flex px-5 md:px-8  justify-between w-full">
+                    
+                    <h1 class="self-center text-center text-lg" >Visibility <img class="inline" width="50" height="30" src="https://img.icons8.com/clouds/100/visible--v2.png" alt="visible--v2"/></h1>
+                    <!-- Visibility Will be written dynamically when API response received -->
+                    <h1 class="self-center text-center text-lg font-semibold"><span id="visibility"></span> <span > KM</span></h1>
+            
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <h2 class="text-center absolute bottom-1 font-bold text-xs md:text-lg leading-none">API Provided By <a href="https://openweathermap.org/api" target="_blank" style=" background: -webkit-linear-gradient(right,  #fc4a1a, #f7b733); 
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;">openweathermap.com</a></h2>
+</main>
+
+</body>
+</html>
